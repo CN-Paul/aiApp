@@ -1,11 +1,19 @@
 import styled from "styled-components";
 import { ResponseCard } from "@/app/components/ai/responseCard";
 import { useState } from "react";
+import { NextProgressButton } from "../button/nextProgressButton";
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px; // 카드 사이의 간격
+  margin-top: 200px;
+`;
+
+const NextButton = styled.button`
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 `;
 
 // 3 cards in a row styled component
@@ -56,22 +64,29 @@ export function CardContainer() {
   };
 
   return (
-    <Container>
-      <ResponseCard
-        isSelected={selectedState[0]}
-        rank={rankState[0]}
-        onClick={() => handleCardSelection(0)}
-      ></ResponseCard>
-      <ResponseCard
-        isSelected={selectedState[1]}
-        rank={rankState[1]}
-        onClick={() => handleCardSelection(1)}
-      ></ResponseCard>
-      <ResponseCard
-        isSelected={selectedState[2]}
-        rank={rankState[2]}
-        onClick={() => handleCardSelection(2)}
-      ></ResponseCard>
-    </Container>
+    <>
+      <Container>
+        <ResponseCard
+          isSelected={selectedState[0]}
+          rank={rankState[0]}
+          onClick={() => handleCardSelection(0)}
+        ></ResponseCard>
+        <ResponseCard
+          isSelected={selectedState[1]}
+          rank={rankState[1]}
+          onClick={() => handleCardSelection(1)}
+        ></ResponseCard>
+        <ResponseCard
+          isSelected={selectedState[2]}
+          rank={rankState[2]}
+          onClick={() => handleCardSelection(2)}
+        ></ResponseCard>
+      </Container>
+      <NextButton>
+        <NextProgressButton
+          progressCnt={rankState.filter((value) => value !== 0).length}
+        ></NextProgressButton>
+      </NextButton>
+    </>
   );
 }
